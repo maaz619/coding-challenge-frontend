@@ -2,7 +2,11 @@ import React from "react";
 
 export type UserID = {
   id?: number;
-  geo: { lat: number; lng: number };
+  geo: Location;
+};
+export type Location = {
+  lat: number;
+  lng: number;
 };
 const FormControl = ({ callback }: any) => {
   const [user, setUser] = React.useState<any>([]);

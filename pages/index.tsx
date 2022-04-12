@@ -1,13 +1,9 @@
 import { useLoadScript } from "@react-google-maps/api";
 import type { NextPage } from "next";
-import dynamic from "next/dynamic";
 import React from "react";
-import FormControl, { UserID } from "../components/FormControl";
+import FormControl from "../components/FormControl";
 import Map from "../components/Map";
-type Location = {
-  lat: number;
-  lng: number;
-};
+import { Location } from "../components/FormControl";
 
 const Home: NextPage = () => {
   const [geo, setGeo] = React.useState<Location>({ lat: 0, lng: 0 });

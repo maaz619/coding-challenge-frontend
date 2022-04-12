@@ -7,7 +7,6 @@ const Map = ({ geo }: UserID) => {
     () => ({ lat: Number(geo?.lat), lng: Number(geo?.lng) }),
     [geo]
   );
-  console.log(geo);
   return (
     <GoogleMap zoom={5} center={center} mapContainerClassName="map-container">
       <Marker position={center} />
