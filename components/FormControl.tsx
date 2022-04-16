@@ -8,7 +8,7 @@ export type Location = {
   lat: number;
   lng: number;
 };
-interface FormType {
+export interface FormType {
   title: string;
   body: string;
 }
@@ -17,7 +17,9 @@ const FormControl = ({ callback }: any) => {
     title: "",
     body: "",
   });
+  const [user, setUser] = React.useState<any>([]);
 
+  const [userData, setUserData] = React.useState<UserID>();
   const style = { padding: "1rem" };
 
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
@@ -27,7 +29,8 @@ const FormControl = ({ callback }: any) => {
         formData.title !== "" &&
         formData.body !== "" &&
         formData.body.length &&
-        formData.title.length > 0
+        formData.title.length > 0 &&
+        userData?.id !== undefined
       ) {
         const data = {
           ...formData,
@@ -47,7 +50,7 @@ const FormControl = ({ callback }: any) => {
           }
         );
         console.log(JSONdata, response.status);
-      }
+      } else alert("please select a user");
     } catch (err) {
       console.log(err);
     }
@@ -60,17 +63,11 @@ const FormControl = ({ callback }: any) => {
     setFormData({ ...currentStatus });
   };
 
-  const [user, setUser] = React.useState<any>([]);
-
-  const [userData, setUserData] = React.useState<UserID>();
-
   const fetchData = () => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((data) => setUser([...data]));
   };
-
-  const postData = (data: any) => {};
 
   callback(userData?.geo);
 
@@ -104,13 +101,7 @@ const FormControl = ({ callback }: any) => {
           <label style={{ padding: "1rem" }} htmlFor="name">
             Select options:
           </label>
-          <select
-            required
-            defaultValue="DEFAULT"
-            onChange={(e) => handleChange1(e)}
-            name="name"
-            id="name"
-          >
+          <select onChange={(e) => handleChange1(e)} name="name" id="name">
             <option hidden disabled selected value="">
               Choose here
             </option>
