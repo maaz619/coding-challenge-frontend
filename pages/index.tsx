@@ -9,7 +9,7 @@ import FormPost from "../components/FormPost";
 const Home: NextPage = () => {
   const [geo, setGeo] = React.useState<Location>({ lat: 0, lng: 0 });
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDppQJ0aqlRCjK_eEnKxdbmJ-AAVbUqdQE",
+    googleMapsApiKey: process.env.GMAP_KEY,
   });
   if (!isLoaded) return <div>Loading...</div>;
   return (
